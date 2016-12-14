@@ -1,5 +1,6 @@
 package com.homeflow.model.serv;
 
+import com.homeflow.model.entities.Category;
 import com.homeflow.model.entities.Flow;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface FlowService {
     public List<Flow> findAll();
     public Flow update(Flow flow) throws Exception;
     public Flow findById(int id);
+    public List<Flow> getByCategory(Category category);
+    public List<Flow> getByCategoryId(Long id);
 }

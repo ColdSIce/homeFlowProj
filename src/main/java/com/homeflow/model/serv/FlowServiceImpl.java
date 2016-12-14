@@ -1,5 +1,6 @@
 package com.homeflow.model.serv;
 
+import com.homeflow.model.entities.Category;
 import com.homeflow.model.entities.Flow;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,12 +53,22 @@ public class FlowServiceImpl implements FlowService {
         updatedFlow.setQty(flow.getQty());
         updatedFlow.setType(flow.getType());
         updatedFlow.setSumma(flow.getSumma());
-        return updatedFlow;
+        return flowRepository.save(updatedFlow);
     }
 
     @Transactional
     @Override
     public Flow findById(int id) {
         return flowRepository.findOne((long) id);
+    }
+
+    @Override
+    public List<Flow> getByCategory(Category category) {
+        return flowRepository.getAllByCategoryId(category.getId());
+    }
+
+    @Override
+    public List<Flow> getByCategoryId(Long id) {
+        return flowRepository.getAllByCategoryId(id);
     }
 }
